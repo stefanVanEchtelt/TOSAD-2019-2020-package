@@ -1,5 +1,7 @@
 package rule;
 
+import businessRule.BusinessRule;
+
 public interface RuleStorage {
-    public Rule getFullRuleByBusinessRule(int businessRuleId);
+    public Rule getRuleByBusinessRule(BusinessRule businessRule);
 }

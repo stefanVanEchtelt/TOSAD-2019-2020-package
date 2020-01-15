@@ -1,6 +1,6 @@
 package rule;
 
-import values.Column;
+import value.Column;
 
 public interface Rule {
     public String create();

@@ -1,9 +1,9 @@
 public class Main {
     public static void main(String[] args) {
+        // TODO DELETE THIS!!!
         System.out.println("damm it worksxxxxxsssss");
 
-        BusinessRuleExecuteFacade fac = new BusinessRuleExecuteFacadeUsage();
-        fac.execute(1);
-//        fac.example(1);
+        BusinessRuleGenerator x = new OracleBusinessRuleGenerator();
+        System.out.println(x.example(2));
     }
 }

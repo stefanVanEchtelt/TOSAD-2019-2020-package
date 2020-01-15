@@ -1,4 +1,4 @@
-package rule.operators.logic;
+package rule.operators;
 
 import rule.Rule;
 import rule.RuleDecorator;

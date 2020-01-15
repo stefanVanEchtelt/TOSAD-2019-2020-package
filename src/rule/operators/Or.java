@@ -1,11 +1,11 @@
-package rule.operators.logic;
+package rule.operators;
 
 import rule.Rule;
 import rule.RuleDecorator;
 
 public class Or extends RuleDecorator {
 
-    Or(Rule rule) {
+    public Or(Rule rule) {
         super(rule);
     }
 

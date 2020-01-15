@@ -1,6 +1,6 @@
-package values;
+package value;
 
-public class Column {
+public class Column implements Value {
     private String name;
 
     public Column(String name) {
@@ -8,6 +8,10 @@ public class Column {
     }
 
     public String getName() {
+        return this.name;
+    }
+
+    public String getValue() {
         return this.name;
     }
 }

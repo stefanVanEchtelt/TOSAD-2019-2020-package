@@ -1,3 +1,4 @@
+import Util.Template;
 import failure.Failure;
 import rule.Rule;
 import triggerType.TriggerType;
@@ -6,8 +7,11 @@ import java.util.List;
 
 public class OracleBusinessRuleBuilder implements BusinessRuleBuilder {
     private String businessRule;
+    private String header = "t";
+    private String body = "s";
+    private String failure = "x";
 
-    public OracleBusinessRuleBuilder() {
+    OracleBusinessRuleBuilder() {
         this.businessRule = new Template("businessRuleTemplate").getContent();
     }
 
@@ -23,18 +27,20 @@ public class OracleBusinessRuleBuilder implements BusinessRuleBuilder {
         }
         headerContent = headerContent.replace("{{ trigger_types_replacement }}", triggers);
         headerContent = headerContent.replace("{{ trigger_name_replacement }}", triggerName);
-        headerContent = headerContent.replace("{{ table_name_replacement }}", "x");
+        // TODO change col1
+        headerContent = headerContent.replace("{{ table_name_replacement }}", "col1");
 
-        this.businessRule = this.businessRule.replace("{{ header_replacement }}", headerContent);
+        this.header = headerContent;
     }
 
     public void buildBody(Rule rule, Failure exception) {
         String bodyContent = new Template("bodyTemplate").getContent();
 
+        // TODO joins???
         bodyContent = bodyContent.replace("{{ statement_replacement }}", rule.create());
         bodyContent = bodyContent.replace("{{ failure_name_replacement }}", exception.getName());
 
-        this.businessRule = this.businessRule.replace("{{ body_replacement }}", bodyContent);
+        this.body = bodyContent;
     }
 
     public void buildFailure(Failure exception) {
@@ -44,15 +50,18 @@ public class OracleBusinessRuleBuilder implements BusinessRuleBuilder {
         failureContent = failureContent.replace("{{ failure_code_replacement }}", Integer.toString(exception.getCode()));
         failureContent = failureContent.replace("{{ failure_message_replacement }}", exception.getMessage());
 
-        this.businessRule = this.businessRule.replace("{{ exceptions_replacement }}", failureContent);
+        this.failure = failureContent;
     }
 
     public String build() {
-        // TODO .....
-        if (!this.businessRule.contains("_replacement")) {
-            return this.businessRule;
-        }
+        this.businessRule = this.businessRule.replace("{{ header_replacement }}", this.header);
+        this.businessRule = this.businessRule.replace("{{ body_replacement }}", this.body);
+        this.businessRule = this.businessRule.replace("{{ exceptions_replacement }}", this.failure);
 
-        return "";
+        // TODO validation ???
+//        if (!this.businessRule.contains("_replacement")) {
+        return this.businessRule;
+//        }
+//        return "";
     }
 }
