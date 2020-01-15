@@ -22,9 +22,8 @@ public class OracleBusinessRuleBuilder implements BusinessRuleBuilder {
             }
         }
         headerContent = headerContent.replace("{{ trigger_types_replacement }}", triggers);
-        headerContent = headerContent.replace("{{ trigger_name_replacement }}", "x");
+        headerContent = headerContent.replace("{{ trigger_name_replacement }}", triggerName);
         headerContent = headerContent.replace("{{ table_name_replacement }}", "x");
-
 
         this.businessRule = this.businessRule.replace("{{ header_replacement }}", headerContent);
     }
