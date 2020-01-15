@@ -14,9 +14,9 @@ public class OracleConnection {
     }
 
     public Connection getConnection() {
-        String url = "jdbc:oracle:thin:@localhost:49161:xe";
-        String username = "STEFAN";
-        String password = "hallo123";
+        String url = "jdbc:oracle:thin:@//ondora04.hu.nl:8521/educ27";
+        String username = "TOSAD_TOOL_DB";
+        String password = "tosadtooldb";
 
         Connection result = null;
         try {
