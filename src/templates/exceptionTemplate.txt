@@ -1,0 +1,4 @@
+EXCEPTION
+        WHEN {{ failure_name_replacement }} THEN
+            RAISE_APPLICATION_ERROR({{ failure_code_replacement }}, '{{ failure_message_replacement }}');
+    END;

@@ -1,0 +1,6 @@
+CREATE OR REPLACE TRIGGER {{ header_replacement }}
+BEGIN
+    {{ body_replacement }}
+
+    {{ exceptions_replacement }}
+END;

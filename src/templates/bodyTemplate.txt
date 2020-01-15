@@ -1,0 +1,3 @@
+IF {{ statement_replacement }}
+        raise {{ failure_name_replacement }};
+    END IF;
