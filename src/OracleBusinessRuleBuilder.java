@@ -1,4 +1,5 @@
 import Util.Template;
+import businessRule.BusinessRule;
 import failure.Failure;
 import rule.Rule;
 import triggerType.TriggerType;
@@ -15,7 +16,7 @@ public class OracleBusinessRuleBuilder implements BusinessRuleBuilder {
         this.businessRule = new Template("businessRuleTemplate").getContent();
     }
 
-    public void buildHeader(String triggerName, List<TriggerType> triggerTypes) {
+    public void buildHeader(BusinessRule businessRule, List<TriggerType> triggerTypes) {
         String headerContent = new Template("headerTemplate").getContent();
 
         String triggers = "";
@@ -26,9 +27,9 @@ public class OracleBusinessRuleBuilder implements BusinessRuleBuilder {
             }
         }
         headerContent = headerContent.replace("{{ trigger_types_replacement }}", triggers);
-        headerContent = headerContent.replace("{{ trigger_name_replacement }}", triggerName);
+        headerContent = headerContent.replace("{{ trigger_name_replacement }}", businessRule.getName());
         // TODO change col1
-        headerContent = headerContent.replace("{{ table_name_replacement }}", "col1");
+        headerContent = headerContent.replace("{{ table_name_replacement }}", businessRule.getTable());
 
         this.header = headerContent;
     }

@@ -13,6 +13,6 @@ public class LessThan extends RuleDecorator {
     }
 
     public String create() {
-        return super.create() + "(" + this.less.getValue() + " > " + "col1" + ")";
+        return super.create() + "(" + this.less.getValue() + " > " + this.getColumn().getNameWithTable() + ")";
     }
 }

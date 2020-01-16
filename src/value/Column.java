@@ -14,4 +14,8 @@ public class Column implements Value {
     public String getValue() {
         return this.name;
     }
+
+    public String getNameWithTable() {
+        return this.name;
+    }
 }

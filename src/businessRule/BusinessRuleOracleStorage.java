@@ -18,7 +18,9 @@ public class BusinessRuleOracleStorage implements BusinessRuleStorage {
             while (dbResultSet.next()) {
                 businessRule = new BusinessRule(
                         dbResultSet.getInt("id"),
-                        dbResultSet.getString("name")
+                        dbResultSet.getString("name"),
+                        dbResultSet.getString("on_table"),
+                        dbResultSet.getString("on_column")
                 );
             }
         } catch (SQLException sqle) { sqle.printStackTrace(); }
