@@ -15,4 +15,8 @@ public class Equal extends RuleDecorator {
     public String create() {
         return super.create() + "(" + this.equal.getValue() + " = " + this.getColumn().getUsableName() + ")";
     }
+
+    public static int getRuleTypeEid() {
+        return 3;
+    }
 }

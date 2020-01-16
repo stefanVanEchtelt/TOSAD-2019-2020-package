@@ -12,4 +12,8 @@ public class Or extends RuleDecorator {
     public String create() {
         return super.create() + " or ";
     }
+
+    public static int getRuleTypeEid() {
+        return 1;
+    }
 }

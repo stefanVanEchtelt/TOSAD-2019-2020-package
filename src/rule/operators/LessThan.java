@@ -15,4 +15,8 @@ public class LessThan extends RuleDecorator {
     public String create() {
         return super.create() + "(" + this.less.getValue() + " > " + this.getColumn().getUsableName() + ")";
     }
+
+    public static int getRuleTypeEid() {
+        return 4;
+    }
 }

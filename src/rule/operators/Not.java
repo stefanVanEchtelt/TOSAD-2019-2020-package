@@ -11,4 +11,8 @@ public class Not extends RuleDecorator {
     public String create() {
         return super.create() + "!";
     }
+
+    public static int getRuleTypeEid() {
+        return 2;
+    }
 }
