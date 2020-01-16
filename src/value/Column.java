@@ -15,7 +15,7 @@ public class Column implements Value {
         return this.name;
     }
 
-    public String getNameWithTable() {
-        return this.name;
+    public String getUsableName() {
+        return ":new." + this.name;
     }
 }

@@ -17,8 +17,8 @@ public class RuleFactory implements RuleFactoryInterface {
 
     public Rule create() {
         // TODO FIX THIS ....
+        Value value = new Literal("16");
 
-        Value value = new Literal("12");
         if (this.ruleTypeEid == 3) {
             return new Equal(this.rule, value);
         } else if (this.ruleTypeEid == 4) {

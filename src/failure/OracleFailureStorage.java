@@ -13,7 +13,6 @@ public class OracleFailureStorage implements FailureStorage {
 
         try (Connection con = OracleConnection.getInstance().getConnection()) {
             String query = "select * from FAILURES where BUISNESS_RULES_ID = " + businessRuleId;
-            System.out.println(query);
             PreparedStatement pstmt = con.prepareStatement(query);
             ResultSet dbResultSet = pstmt.executeQuery();
 

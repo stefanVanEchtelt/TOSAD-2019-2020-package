@@ -13,6 +13,6 @@ public class Equal extends RuleDecorator {
     }
 
     public String create() {
-        return super.create() + "(" + this.equal.getValue() + " = " + this.getColumn().getNameWithTable() + ")";
+        return super.create() + "(" + this.equal.getValue() + " = " + this.getColumn().getUsableName() + ")";
     }
 }
