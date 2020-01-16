@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class FailureOracleStorage implements FailureStorage {
+public class OracleFailureStorage implements FailureStorage {
     public Failure getByBusinessRule(int businessRuleId) {
         Failure failure = null;
 

@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TriggerTypeOracleStorage implements TriggerTypeStorage {
+public class OracleTriggerTypeStorage implements TriggerTypeStorage {
     public List<TriggerType> getByBusinessRule(int businessRuleId) {
         List<TriggerType> triggerTypes = new ArrayList<TriggerType>();
 

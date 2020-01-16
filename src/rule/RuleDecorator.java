@@ -1,6 +1,6 @@
 package rule;
 
-import values.Column;
+import value.Column;
 
 public abstract class RuleDecorator implements Rule {
     protected Rule rule;

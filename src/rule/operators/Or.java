@@ -1,15 +1,19 @@
-package rule.operators.logic;
+package rule.operators;
 
 import rule.Rule;
 import rule.RuleDecorator;
 
 public class Or extends RuleDecorator {
 
-    Or(Rule rule) {
+    public Or(Rule rule) {
         super(rule);
     }
 
     public String create() {
         return super.create() + " or ";
+    }
+
+    public static int getRuleTypeEid() {
+        return 1;
     }
 }

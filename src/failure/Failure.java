@@ -30,4 +30,9 @@ public class Failure {
     public String getMessage() {
         return message;
     }
+
+    static Failure getByBusinessRule(int businessRule) {
+        FailureStorage failureStorage = new OracleFailureStorage();
+        return failureStorage.getByBusinessRule(businessRule);
+    }
 }

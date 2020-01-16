@@ -1,4 +1,4 @@
-package rule.operators.logic;
+package rule.operators;
 
 import rule.Rule;
 import rule.RuleDecorator;
@@ -10,5 +10,9 @@ public class Not extends RuleDecorator {
 
     public String create() {
         return super.create() + "!";
+    }
+
+    public static int getRuleTypeEid() {
+        return 2;
     }
 }

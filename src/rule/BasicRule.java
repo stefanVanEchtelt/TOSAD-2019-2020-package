@@ -1,6 +1,7 @@
 package rule;
 
-import values.Column;
+import businessRule.BusinessRule;
+import value.Column;
 
 public class BasicRule implements Rule {
     private Column column;
@@ -15,5 +16,10 @@ public class BasicRule implements Rule {
 
     public String create() {
         return "";
+    }
+
+    static Rule getRuleByBusinessRule(BusinessRule businessRule) {
+        RuleStorage ruleStorage = new OracleRuleStorage();
+        return ruleStorage.getRuleByBusinessRule(businessRule);
     }
 }
