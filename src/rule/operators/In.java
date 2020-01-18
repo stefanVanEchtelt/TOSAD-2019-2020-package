@@ -15,7 +15,15 @@ public class In extends RuleDecorator {
     }
 
     public String create() {
-        return super.create() + "";
+        String inString = "";
+        for (Value value: this.values) {
+            inString += value.getValue();
+            if (this.values.indexOf(value) < this.values.size() - 1) {
+                inString += ", ";
+            }
+        }
+
+        return super.create() + this.getColumn().getUsableName() + " in (" + inString + ")";
     }
 
     public static int getRuleTypeEid() {

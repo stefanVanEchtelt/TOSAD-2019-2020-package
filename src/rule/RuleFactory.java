@@ -1,9 +1,6 @@
 package rule;
 
-import rule.operators.Equals;
-import rule.operators.LessThan;
-import rule.operators.Not;
-import rule.operators.Or;
+import rule.operators.*;
 import value.Value;
 import value.ValueService;
 
@@ -32,6 +29,8 @@ public class RuleFactory implements RuleFactoryInterface {
             rule = new Equals(this.rule, values.get(0));
         } else if (this.ruleTypeEid == LessThan.getRuleTypeEid()) {
             rule = new LessThan(this.rule, values.get(0));
+        } else if (this.ruleTypeEid == In.getRuleTypeEid()) {
+            rule = new In(this.rule, values);
         }
 
         return rule;

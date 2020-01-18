@@ -1,1 +1,1 @@
-IF !({{ statement_replacement }})
+IF not ({{ statement_replacement }})
