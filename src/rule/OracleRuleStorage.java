@@ -1,7 +1,7 @@
 package rule;
 
 import businessRule.BusinessRule;
-import connections.OracleConnection;
+import connections.OracleToolDbConnection;
 import value.Column;
 
 import java.sql.Connection;
@@ -15,9 +15,9 @@ public class OracleRuleStorage implements RuleStorage {
 
         Rule rule = new BasicRule(col);
 
-        try (Connection con = OracleConnection.getInstance().getConnection()) {
+        try (Connection con = OracleToolDbConnection.getInstance().getConnection()) {
             String query = "select * from RULES R " +
-                    "where R.BUISNESS_RULES_ID = " + businessRule.getId();
+                    "where R.BUSINESS_RULES_ID = " + businessRule.getId();
             PreparedStatement pstmt = con.prepareStatement(query);
             ResultSet dbResultSet = pstmt.executeQuery();
 

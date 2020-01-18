@@ -1,6 +1,6 @@
 package triggerType;
 
-import connections.OracleConnection;
+import connections.OracleToolDbConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,10 +13,10 @@ public class OracleTriggerTypeStorage implements TriggerTypeStorage {
     public List<TriggerType> getByBusinessRule(int businessRuleId) {
         List<TriggerType> triggerTypes = new ArrayList<TriggerType>();
 
-        try (Connection con = OracleConnection.getInstance().getConnection()) {
+        try (Connection con = OracleToolDbConnection.getInstance().getConnection()) {
             String query = "select * from EVENT_TRIGGER_TYPES " +
-                    "join BUISNESS_RULE_TRIGGER_EVENTS on id = EVENT_TRIGGER_TYPE_ID " +
-                    "where BUISNESS_RULES_ID = " + businessRuleId;
+                    "join BUSINESS_RULE_TRIGGER_EVENTS on id = EVENT_TRIGGER_TYPE_ID " +
+                    "where BUSINESS_RULES_ID = " + businessRuleId;
             PreparedStatement pstmt = con.prepareStatement(query);
             ResultSet dbResultSet = pstmt.executeQuery();
 

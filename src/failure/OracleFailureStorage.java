@@ -1,6 +1,6 @@
 package failure;
 
-import connections.OracleConnection;
+import connections.OracleToolDbConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,8 +11,8 @@ public class OracleFailureStorage implements FailureStorage {
     public Failure getByBusinessRule(int businessRuleId) {
         Failure failure = null;
 
-        try (Connection con = OracleConnection.getInstance().getConnection()) {
-            String query = "select * from FAILURES where BUISNESS_RULES_ID = " + businessRuleId;
+        try (Connection con = OracleToolDbConnection.getInstance().getConnection()) {
+            String query = "select * from FAILURES where busiNESS_RULES_ID = " + businessRuleId;
             PreparedStatement pstmt = con.prepareStatement(query);
             ResultSet dbResultSet = pstmt.executeQuery();
 

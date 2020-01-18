@@ -3,14 +3,14 @@ package connections;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class OracleConnection {
-    private static OracleConnection instance;
+public class OracleToolDbConnection {
+    private static OracleToolDbConnection instance;
 
-    public static OracleConnection getInstance() {
-        if (OracleConnection.instance == null) {
-            OracleConnection.instance = new OracleConnection();
+    public static OracleToolDbConnection getInstance() {
+        if (OracleToolDbConnection.instance == null) {
+            OracleToolDbConnection.instance = new OracleToolDbConnection();
         }
-        return OracleConnection.instance;
+        return OracleToolDbConnection.instance;
     }
 
     public Connection getConnection() {

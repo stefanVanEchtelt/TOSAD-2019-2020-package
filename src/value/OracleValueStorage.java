@@ -1,6 +1,6 @@
 package value;
 
-import connections.OracleConnection;
+import connections.OracleToolDbConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,8 +12,8 @@ import java.util.List;
 public class OracleValueStorage implements ValueStorage {
     public List<Value> getValuesByRule(int ruleId) {
         List<Value> values = new ArrayList<Value>();
-        try (Connection con = OracleConnection.getInstance().getConnection()) {
-            String query = "select * from VAULES where RULE_ID = " + ruleId + " ORDER BY SORT_ORDER";
+        try (Connection con = OracleToolDbConnection.getInstance().getConnection()) {
+            String query = "select * from \"VALUES\" where RULE_ID = " + ruleId + " ORDER BY SORT_ORDER";
             PreparedStatement pstmt = con.prepareStatement(query);
             ResultSet dbResultSet = pstmt.executeQuery();
 
