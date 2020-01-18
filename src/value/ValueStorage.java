@@ -1,5 +1,7 @@
 package value;
 
+import java.util.List;
+
 public interface ValueStorage {
-    public Value getValuesByRule(int ruleId);
+    public List<Value> getValuesByRule(int ruleId);
 }

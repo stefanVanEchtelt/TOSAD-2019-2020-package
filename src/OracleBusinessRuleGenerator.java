@@ -1,10 +1,14 @@
+import execute.ExecuteService;
+
 public class OracleBusinessRuleGenerator implements BusinessRuleGenerator {
     private BusinessRuleFacade businessRuleFacade = new OracleRuleFacade();
 
     public boolean execute(int businessRuleId) {
-        String br = businessRuleFacade.getRuleCode(businessRuleId);
+        String businessRuleCode = businessRuleFacade.getRuleCode(businessRuleId);
 
-        // TODO build execute
+        // TODO error handeling
+
+        boolean success = ExecuteService.execute(businessRuleId, businessRuleCode);
 
         return true;
     }

@@ -1,3 +1,4 @@
 {{ trigger_name_replacement }}
     BEFORE {{ trigger_types_replacement }}
     ON {{ table_name_replacement }}
+    FOR EACH ROW

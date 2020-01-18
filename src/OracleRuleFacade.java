@@ -13,14 +13,13 @@ public class OracleRuleFacade implements BusinessRuleFacade {
     public String getRuleCode(int businessRuleId) {
         BusinessRuleBuilder businessRuleBuilder = new OracleBusinessRuleBuilder();
 
-        // TODO find better way....
         BusinessRule businessRule = new BusinessRuleService().getBusinessRule(businessRuleId);
         List<TriggerType> triggerTypes = new TriggerTypeService().getByBusinessRule(businessRuleId);
         Rule rule = new RuleService().getRuleByBusinessRule(businessRule);
         Failure failure = new FailureService().getByBusinessRule(businessRuleId);
 
         businessRuleBuilder.buildHeader(businessRule, triggerTypes);
-        businessRuleBuilder.buildBody(rule, failure);
+        businessRuleBuilder.buildBody(rule);
         businessRuleBuilder.buildFailure(failure);
 
         return businessRuleBuilder.build();

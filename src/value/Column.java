@@ -12,7 +12,7 @@ public class Column implements Value {
     }
 
     public String getValue() {
-        return this.name;
+        return ":new." + this.name;
     }
 
     public String getUsableName() {

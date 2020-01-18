@@ -11,8 +11,7 @@ import java.sql.SQLException;
 
 public class OracleRuleStorage implements RuleStorage {
     public Rule getRuleByBusinessRule(BusinessRule businessRule) {
-        // TODO get BR column ...
-        Column col = new Column("leeftijd");
+        Column col = new Column(businessRule.getColumn());
 
         Rule rule = new BasicRule(col);
 
@@ -24,8 +23,9 @@ public class OracleRuleStorage implements RuleStorage {
 
             while (dbResultSet.next()) {
                 int typeEid = dbResultSet.getInt("TYPE_EID");
+                int id = dbResultSet.getInt("id");
 
-                RuleFactoryInterface ruleFactory = new RuleFactory(rule, typeEid);
+                RuleFactoryInterface ruleFactory = new RuleFactory(rule, typeEid, id);
                 rule = ruleFactory.create();
             }
 

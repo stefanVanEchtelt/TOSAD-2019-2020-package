@@ -4,10 +4,10 @@ import rule.Rule;
 import rule.RuleDecorator;
 import value.Value;
 
-public class Equal extends RuleDecorator {
+public class Equals extends RuleDecorator {
     private Value equal;
 
-    public Equal(Rule rule, Value equal) {
+    public Equals(Rule rule, Value equal) {
         super(rule);
         this.equal = equal;
     }

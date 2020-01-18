@@ -28,4 +28,8 @@ public class BusinessRule {
     public String getTable() {
         return this.onTable;
     }
+
+    public String getColumn() {
+        return this.onColumn;
+    }
 }

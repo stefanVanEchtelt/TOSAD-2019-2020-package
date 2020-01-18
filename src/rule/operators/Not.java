@@ -4,7 +4,7 @@ import rule.Rule;
 import rule.RuleDecorator;
 
 public class Not extends RuleDecorator {
-    Not(Rule rule) {
+    public Not(Rule rule) {
         super(rule);
     }
 

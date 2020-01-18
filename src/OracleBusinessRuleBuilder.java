@@ -23,23 +23,22 @@ public class OracleBusinessRuleBuilder implements BusinessRuleBuilder {
         for (TriggerType triggerType: triggerTypes) {
             triggers += triggerType.getName();
             if (triggerTypes.indexOf(triggerType) < triggerTypes.size() - 1) {
-                triggers += "/";
+                triggers += " or ";
             }
         }
         headerContent = headerContent.replace("{{ trigger_types_replacement }}", triggers);
         headerContent = headerContent.replace("{{ trigger_name_replacement }}", businessRule.getName());
-        // TODO change col1
         headerContent = headerContent.replace("{{ table_name_replacement }}", businessRule.getTable());
 
         this.header = headerContent;
     }
 
-    public void buildBody(Rule rule, Failure exception) {
+    public void buildBody(Rule rule) {
         String bodyContent = new Template("bodyTemplate").getContent();
 
         // TODO joins???
+
         bodyContent = bodyContent.replace("{{ statement_replacement }}", rule.create());
-        bodyContent = bodyContent.replace("{{ failure_name_replacement }}", exception.getName());
 
         this.body = bodyContent;
     }
@@ -59,10 +58,6 @@ public class OracleBusinessRuleBuilder implements BusinessRuleBuilder {
         this.businessRule = this.businessRule.replace("{{ body_replacement }}", this.body);
         this.businessRule = this.businessRule.replace("{{ exceptions_replacement }}", this.failure);
 
-        // TODO validation ???
-//        if (!this.businessRule.contains("_replacement")) {
         return this.businessRule;
-//        }
-//        return "";
     }
 }
