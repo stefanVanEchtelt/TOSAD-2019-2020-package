@@ -6,11 +6,7 @@ public class OracleBusinessRuleGenerator implements BusinessRuleGenerator {
     public boolean execute(int businessRuleId) {
         String businessRuleCode = businessRuleFacade.getRuleCode(businessRuleId);
 
-        // TODO error handeling
-
-        boolean success = ExecuteService.execute(businessRuleId, businessRuleCode);
-
-        return true;
+        return ExecuteService.execute(businessRuleId, businessRuleCode);
     }
 
     public String example(int businessRuleId) {

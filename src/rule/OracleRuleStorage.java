@@ -12,7 +12,6 @@ import java.sql.SQLException;
 public class OracleRuleStorage implements RuleStorage {
     public Rule getRuleByBusinessRule(BusinessRule businessRule) {
         Column col = new Column(businessRule.getColumn());
-
         Rule rule = new BasicRule(col);
 
         try (Connection con = OracleToolDbConnection.getInstance().getConnection()) {

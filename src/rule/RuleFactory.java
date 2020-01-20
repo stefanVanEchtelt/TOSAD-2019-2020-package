@@ -31,6 +31,8 @@ public class RuleFactory implements RuleFactoryInterface {
             rule = new LessThan(this.rule, values.get(0));
         } else if (this.ruleTypeEid == In.getRuleTypeEid()) {
             rule = new In(this.rule, values);
+        } else if (this.ruleTypeEid == LargerThan.getRuleTypeEid()) {
+            rule = new LargerThan(this.rule, values.get(0));
         }
 
         return rule;
