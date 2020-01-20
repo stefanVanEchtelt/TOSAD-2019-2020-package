@@ -8,9 +8,9 @@ import java.util.List;
 
 public class OracleBusinessRuleBuilder implements BusinessRuleBuilder {
     private String businessRule;
-    private String header = "t";
-    private String body = "s";
-    private String failure = "x";
+    private String header = "";
+    private String body = "";
+    private String failure = "";
 
     OracleBusinessRuleBuilder() {
         this.businessRule = new Template("businessRuleTemplate").getContent();
