@@ -1,3 +1,5 @@
+package businessRuleBuilder;
+
 import Util.Template;
 import businessRule.BusinessRule;
 import failure.Failure;

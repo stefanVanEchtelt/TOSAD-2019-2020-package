@@ -1,4 +1,6 @@
 import execute.ExecuteService;
+import businessRuleBuilder.BusinessRuleFacade;
+import businessRuleBuilder.OracleRuleFacade;
 
 public class OracleBusinessRuleGenerator implements BusinessRuleGenerator {
     private BusinessRuleFacade businessRuleFacade = new OracleRuleFacade();
