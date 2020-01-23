@@ -39,6 +39,12 @@ public class RuleFactory implements RuleFactoryInterface {
         } else if (this.ruleTypeEid == LargerThan.getRuleTypeEid()) {
             rule = new LargerThan(this.rule, values.get(0));
 
+        } else if (this.ruleTypeEid == Between.getRuleTypeEid()) {
+            rule = new Between(this.rule, values.get(0), values.get(1));
+
+        } else if (this.ruleTypeEid == Like.getRuleTypeEid()) {
+            rule = new Like(this.rule, values.get(0));
+
         }
 
         return rule;
