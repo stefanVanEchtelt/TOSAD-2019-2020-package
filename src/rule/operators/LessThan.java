@@ -4,6 +4,8 @@ import rule.Rule;
 import rule.RuleDecorator;
 import value.Value;
 
+import java.util.List;
+
 public class LessThan extends RuleDecorator {
     private Value less;
 
@@ -13,7 +15,19 @@ public class LessThan extends RuleDecorator {
     }
 
     public String create() {
-        return super.create() + "(" + this.less.getValue() + " > " + this.getColumn().getUsableName() + ")";
+        return super.create() + "(" + this.less.getUsableValue(this.getColumn().getTableName()) + " > " + this.getColumn().getUsableName() + ")";
+    }
+
+    public List<String> getJoinableValues() {
+        List<String> values = super.getJoinableValues();
+
+        if (this.less.isColumn() && !super.isInBusinessRuleTable(this.less.getOfficialValue())) {
+            if (!values.contains(this.less.getOfficialValue())) {
+            values.add(this.less.getOfficialValue());
+            }
+        }
+
+        return values;
     }
 
     public static int getRuleTypeEid() {

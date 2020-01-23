@@ -7,7 +7,15 @@ public class Literal implements Value {
         this.value = value;
     }
 
-    public String getValue() {
+    public boolean isColumn() {
+        return false;
+    }
+
+    public String getUsableValue(String onTableName) {
+        return this.value;
+    }
+
+    public String getOfficialValue() {
         return this.value;
     }
 }
