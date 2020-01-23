@@ -27,4 +27,17 @@ public class BusinessRuleOracleStorage implements BusinessRuleStorage {
 
         return businessRule;
     }
+
+
+    public boolean deleteFromTargetDb(BusinessRule businessRule) {
+        boolean result = false;
+
+        try (Connection con = OracleToolDbConnection.getInstance().getConnection()) {
+            String query = "DROP TRIGGER " + businessRule.getName();
+            PreparedStatement pstmt = con.prepareStatement(query);
+            pstmt.executeQuery();
+        } catch (SQLException sqle) { sqle.printStackTrace(); }
+
+        return result;
+    }
 }

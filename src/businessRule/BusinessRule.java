@@ -25,6 +25,11 @@ public class BusinessRule {
         return businessRuleStorage.getById(businessRuleId);
     }
 
+    public boolean removeFromTargetDb() {
+        BusinessRuleStorage businessRuleStorage = new BusinessRuleOracleStorage();
+        return businessRuleStorage.deleteFromTargetDb(this);
+    }
+
     public String getTable() {
         return this.onTable;
     }
