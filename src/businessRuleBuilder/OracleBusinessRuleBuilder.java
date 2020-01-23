@@ -44,9 +44,8 @@ public class OracleBusinessRuleBuilder implements BusinessRuleBuilder {
 
         StringBuilder vars = new StringBuilder();
         for (String var: rule.getJoinableValues()) {
-            // TODO add type
             vars.append(var.replace(".", "_"));
-            vars.append(" " + "string" + ";");
+            vars.append(" " + var + "%type;");
 
             if (rule.getJoinableValues().indexOf(var) < rule.getJoinableValues().size() - 1) {
                 vars.append("\n\t");
