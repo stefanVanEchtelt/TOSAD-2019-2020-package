@@ -1,6 +1,6 @@
 package businessRuleBuilder;
 
-import Util.Template;
+import templates.Template;
 import businessRule.BusinessRule;
 import failure.Failure;
 import rule.Rule;
