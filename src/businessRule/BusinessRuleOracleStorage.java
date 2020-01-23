@@ -1,5 +1,6 @@
 package businessRule;
 
+import connections.OracleTargetDbConnection;
 import connections.OracleToolDbConnection;
 
 import java.sql.Connection;
@@ -32,10 +33,11 @@ public class BusinessRuleOracleStorage implements BusinessRuleStorage {
     public boolean deleteFromTargetDb(BusinessRule businessRule) {
         boolean result = false;
 
-        try (Connection con = OracleToolDbConnection.getInstance().getConnection()) {
+        try (Connection con = OracleTargetDbConnection.getInstance().getConnection()) {
             String query = "DROP TRIGGER " + businessRule.getName();
             PreparedStatement pstmt = con.prepareStatement(query);
             pstmt.executeQuery();
+            result = true;
         } catch (SQLException sqle) { sqle.printStackTrace(); }
 
         return result;

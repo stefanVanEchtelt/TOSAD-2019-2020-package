@@ -12,10 +12,6 @@ public class Template {
     public String getContent() {
         try {
             InputStream inputStream = getClass().getResourceAsStream(inputFile+".txt");
-//            FileInputStream fis = new FileInputStream(this.file);
-//            byte[] data = new byte[(int) this.inputStream.length()];
-//            fis.read(data);
-            String content;
             InputStreamReader isReader = new InputStreamReader(inputStream);
             BufferedReader bufferedReader = new BufferedReader(isReader);
             StringBuffer stringBuffer = new StringBuffer();
@@ -26,7 +22,7 @@ public class Template {
 
             return stringBuffer.toString();
         } catch (Exception exception) {
-            System.out.println(exception.getMessage());
+            exception.printStackTrace();
             return "ooh";
         }
     }
