@@ -3,6 +3,8 @@ package businessRuleBuilder;
 import templates.Template;
 import businessRule.BusinessRule;
 import failure.Failure;
+import join.Join;
+import join.JoinService;
 import rule.Rule;
 import triggerType.TriggerType;
 
@@ -11,6 +13,8 @@ import java.util.List;
 public class OracleBusinessRuleBuilder implements BusinessRuleBuilder {
     private String businessRule;
     private String header = "";
+    private String declaration = "";
+    private String joins = "";
     private String body = "";
     private String failure = "";
 
@@ -35,10 +39,49 @@ public class OracleBusinessRuleBuilder implements BusinessRuleBuilder {
         this.header = headerContent;
     }
 
+    public void buildDeclaration(Rule rule) {
+        String declarationContent = new Template("declarationTemplate").getContent();
+
+        StringBuilder vars = new StringBuilder();
+        for (String var: rule.getJoinableValues()) {
+            vars.append(var.replace(".", "_"));
+            vars.append(" " + var + "%type;");
+
+            if (rule.getJoinableValues().indexOf(var) < rule.getJoinableValues().size() - 1) {
+                vars.append("\n\t");
+            }
+        }
+
+        declarationContent = declarationContent.replace("{{ vars_replacement }}", vars.toString());
+
+        this.declaration = declarationContent;
+    }
+
+    public void buildJoins(Rule rule) {
+        StringBuilder joinsContent = new StringBuilder();
+        JoinService joinService = new JoinService();
+
+        for (String value: rule.getJoinableValues()) {
+            String[] splitValue = value.split("\\.", value.length());
+            Join join = joinService.getJoinByTables(splitValue[0], rule.getColumn().getTableName());
+            String joinTemplate = new Template("joinTemplate").getContent();
+
+            joinTemplate = joinTemplate.replace("{{ select_replacement }}", value);
+            joinTemplate = joinTemplate.replace("{{ variableName_replacement }}", value.replace(".", "_"));
+            joinTemplate = joinTemplate.replace("{{ tableName_replacement }}", join.getFromTable() + ", " + join.getToTable());
+            joinTemplate = joinTemplate.replace("{{ condition_replacement }}", join.getFromTable() + "." + join.getFromColumn() + " = " + join.getToTable() + "." + join.getToColumn());
+            joinsContent.append(joinTemplate);
+
+            if (rule.getJoinableValues().indexOf(value) < rule.getJoinableValues().size() - 1) {
+                joinsContent.append("\n");
+            }
+        }
+
+        this.joins = joinsContent.toString();
+    }
+
     public void buildBody(Rule rule) {
         String bodyContent = new Template("bodyTemplate").getContent();
-
-        // TODO joins???
 
         bodyContent = bodyContent.replace("{{ statement_replacement }}", rule.create());
 
@@ -57,6 +100,8 @@ public class OracleBusinessRuleBuilder implements BusinessRuleBuilder {
 
     public String build() {
         this.businessRule = this.businessRule.replace("{{ header_replacement }}", this.header);
+        this.businessRule = this.businessRule.replace("{{ declaration_replacement }}", this.declaration);
+        this.businessRule = this.businessRule.replace("{{ join_replacement }}", this.joins);
         this.businessRule = this.businessRule.replace("{{ body_replacement }}", this.body);
         this.businessRule = this.businessRule.replace("{{ exceptions_replacement }}", this.failure);
 

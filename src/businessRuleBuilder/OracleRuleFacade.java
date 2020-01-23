@@ -21,6 +21,12 @@ public class OracleRuleFacade implements BusinessRuleFacade {
         Failure failure = new FailureService().getByBusinessRule(businessRuleId);
 
         businessRuleBuilder.buildHeader(businessRule, triggerTypes);
+
+        if (rule.getJoinableValues().size() > 0) {
+            businessRuleBuilder.buildDeclaration(rule);
+            businessRuleBuilder.buildJoins(rule);
+        }
+
         businessRuleBuilder.buildBody(rule);
         businessRuleBuilder.buildFailure(failure);
 

@@ -4,6 +4,8 @@ import rule.Rule;
 import rule.RuleDecorator;
 import value.Value;
 
+import java.util.List;
+
 public class LargerThan extends RuleDecorator {
     private Value larger;
 
@@ -13,7 +15,19 @@ public class LargerThan extends RuleDecorator {
     }
 
     public String create() {
-        return super.create() + "(" + this.larger.getValue() + " < " + this.getColumn().getUsableName() + ")";
+        return super.create() + "(" + this.larger.getUsableValue(this.getColumn().getTableName()) + " < " + this.getColumn().getUsableName() + ")";
+    }
+
+    public List<String> getJoinableValues() {
+        List<String> values = super.getJoinableValues();
+
+        if (this.larger.isColumn() && !super.isInBusinessRuleTable(this.larger.getOfficialValue())) {
+            if (!values.contains(this.larger.getOfficialValue())) {
+            values.add(this.larger.getOfficialValue());
+            }
+        }
+
+        return values;
     }
 
     public static int getRuleTypeEid() {

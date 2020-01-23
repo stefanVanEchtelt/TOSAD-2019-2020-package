@@ -1,5 +1,7 @@
 CREATE OR REPLACE TRIGGER {{ header_replacement }}
+{{ declaration_replacement }}
 BEGIN
+{{ join_replacement }}
     {{ body_replacement }}
     {{ exceptions_replacement }}
 END;

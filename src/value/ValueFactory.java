@@ -13,7 +13,7 @@ public class ValueFactory implements ValueFactoryInterface {
     {
         if (this.isColumn) {
             String[] splitValue = this.value.split("\\.", this.value.length());
-            return new Column(splitValue[splitValue.length - 1]);
+            return new Column(splitValue[splitValue.length - 1], splitValue[0]);
         } else {
             return new Literal(this.value);
         }
