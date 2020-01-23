@@ -1,4 +1,4 @@
-import execute.OracleBusinessRuleGenerator;
+import businessRuleBuilder.OracleBusinessRuleGenerator;
 
 public class Main {
     public static void main(String[] args) {

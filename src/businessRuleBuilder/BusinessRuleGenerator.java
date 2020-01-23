@@ -1,4 +1,4 @@
-package execute;
+package businessRuleBuilder;
 
 public interface BusinessRuleGenerator {
     public boolean execute(int businessRuleId);
