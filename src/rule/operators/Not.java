@@ -9,7 +9,7 @@ public class Not extends RuleDecorator {
     }
 
     public String create() {
-        return super.create() + "!";
+        return super.create() + "not";
     }
 
     public static int getRuleTypeEid() {
