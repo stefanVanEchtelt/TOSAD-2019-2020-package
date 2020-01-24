@@ -17,7 +17,7 @@ public class In extends RuleDecorator {
     public String create() {
         String inString = "";
         for (Value value: this.values) {
-            inString += value.getUsableValue(this.getColumn().getTableName());
+            inString += "'" + value.getUsableValue(this.getColumn().getTableName()) + "'";
             if (this.values.indexOf(value) < this.values.size() - 1) {
                 inString += ", ";
             }
