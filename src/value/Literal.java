@@ -12,7 +12,12 @@ public class Literal implements Value {
     }
 
     public String getUsableValue(String onTableName) {
-        return this.value;
+        try {
+            Integer.parseInt(this.value);
+            return this.value;
+        } catch(NumberFormatException e) {
+            return "'" + this.value + "'";
+        }
     }
 
     public String getOfficialValue() {
