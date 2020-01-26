@@ -38,6 +38,15 @@ public class BusinessRuleOracleStorage implements BusinessRuleStorage {
             PreparedStatement pstmt = con.prepareStatement(query);
             pstmt.executeQuery();
             result = true;
+
+            try(Connection toolCon = OracleToolDbConnection.getInstance().getConnection()) {
+                String query2 = "UPDATE BUSINESS_RULES SET IS_EXECUTED = 0 WHERE ID = "+ businessRule.getId();
+                PreparedStatement pstmt2 = toolCon.prepareStatement(query2);
+                pstmt2.executeUpdate();
+                return true;
+            } catch (SQLException sqle) {
+                sqle.printStackTrace();
+            }
         } catch (SQLException sqle) { sqle.printStackTrace(); }
 
         return result;
