@@ -21,6 +21,7 @@ public class LessThan extends RuleDecorator {
     public List<String> getJoinableValues() {
         List<String> values = super.getJoinableValues();
 
+        // decide witch value to join
         if (this.less.isColumn() && !super.isInBusinessRuleTable(this.less.getOfficialValue())) {
             if (!values.contains(this.less.getOfficialValue())) {
             values.add(this.less.getOfficialValue());

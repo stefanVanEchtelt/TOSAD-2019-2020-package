@@ -11,6 +11,7 @@ public class OracleFailureStorage implements FailureStorage {
     public Failure getByBusinessRule(int businessRuleId) {
         Failure failure = null;
 
+        // get failure by businessRuleId
         try (Connection con = OracleToolDbConnection.getInstance().getConnection()) {
             String query = "select * from FAILURES where busiNESS_RULES_ID = " + businessRuleId;
             PreparedStatement pstmt = con.prepareStatement(query);

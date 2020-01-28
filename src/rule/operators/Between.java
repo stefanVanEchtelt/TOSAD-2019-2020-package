@@ -23,6 +23,7 @@ public class Between extends RuleDecorator {
     public List<String> getJoinableValues() {
         List<String> values = super.getJoinableValues();
 
+        // decide witch value to join
         if (this.from.isColumn() && !super.isInBusinessRuleTable(this.from.getOfficialValue())) {
             if (!values.contains(this.from.getOfficialValue())) {
                 values.add(this.from.getOfficialValue());

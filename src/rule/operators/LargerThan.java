@@ -21,6 +21,7 @@ public class LargerThan extends RuleDecorator {
     public List<String> getJoinableValues() {
         List<String> values = super.getJoinableValues();
 
+        // decide witch value to join
         if (this.larger.isColumn() && !super.isInBusinessRuleTable(this.larger.getOfficialValue())) {
             if (!values.contains(this.larger.getOfficialValue())) {
             values.add(this.larger.getOfficialValue());

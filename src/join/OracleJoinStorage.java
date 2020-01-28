@@ -11,6 +11,7 @@ public class OracleJoinStorage implements JoinStorage {
     public Join getRelationData(Join join) {
         try (Connection con = OracleTargetDbConnection.getInstance().getConnection()) {
 
+            // query to get rules on how to join
             String query = "SELECT a.constraint_name, a.table_name, a.column_name,  c.owner, c_pk.table_name r_table_name,  b.column_name r_column_name FROM user_cons_columns a " +
                     "JOIN user_constraints c ON a.owner = c.owner AND a.constraint_name = c.constraint_name " +
                     "JOIN user_constraints c_pk ON c.r_owner = c_pk.owner AND c.r_constraint_name = c_pk.constraint_name " +

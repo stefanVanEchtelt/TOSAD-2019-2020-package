@@ -14,6 +14,7 @@ public class OracleTargetDbConnection {
     }
 
     public Connection getConnection() {
+        // get oracle connection
         String url = "jdbc:oracle:thin:@//ondora04.hu.nl:8521/educ27";
         String username = "TOSAD_TARGET_DB";
         String password = "tosadtargetdb";

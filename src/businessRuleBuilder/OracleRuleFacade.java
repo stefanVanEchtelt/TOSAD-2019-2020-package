@@ -15,6 +15,7 @@ public class OracleRuleFacade implements BusinessRuleFacade {
     public String getRuleCode(int businessRuleId) {
         BusinessRuleBuilder businessRuleBuilder = new OracleBusinessRuleBuilder();
 
+        // Get all data to build businessRule code
         BusinessRule businessRule = new BusinessRuleService().getBusinessRule(businessRuleId);
         List<TriggerType> triggerTypes = new TriggerTypeService().getByBusinessRule(businessRuleId);
         Rule rule = new RuleService().getRuleByBusinessRule(businessRule);

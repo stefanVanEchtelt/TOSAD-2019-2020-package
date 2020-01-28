@@ -13,6 +13,7 @@ public class OracleTriggerTypeStorage implements TriggerTypeStorage {
     public List<TriggerType> getByBusinessRule(int businessRuleId) {
         List<TriggerType> triggerTypes = new ArrayList<TriggerType>();
 
+        // get all trigger types of businessRule
         try (Connection con = OracleToolDbConnection.getInstance().getConnection()) {
             String query = "select * from EVENT_TRIGGER_TYPES " +
                     "join BUSINESS_RULE_TRIGGER_EVENTS on id = EVENT_TRIGGER_TYPE_ID " +

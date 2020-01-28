@@ -32,6 +32,7 @@ public class OracleBusinessRuleBuilder implements BusinessRuleBuilder {
                 triggers += " or ";
             }
         }
+        // replace all needed in String
         headerContent = headerContent.replace("{{ trigger_types_replacement }}", triggers);
         headerContent = headerContent.replace("{{ trigger_name_replacement }}", businessRule.getName());
         headerContent = headerContent.replace("{{ table_name_replacement }}", businessRule.getTable());
@@ -44,6 +45,7 @@ public class OracleBusinessRuleBuilder implements BusinessRuleBuilder {
 
         StringBuilder vars = new StringBuilder();
         for (String var: rule.getJoinableValues()) {
+            // build all vars with types
             vars.append(var.replace(".", "_"));
             vars.append(" " + var + "%type;");
 
@@ -63,9 +65,11 @@ public class OracleBusinessRuleBuilder implements BusinessRuleBuilder {
 
         for (String value: rule.getJoinableValues()) {
             String[] splitValue = value.split("\\.", value.length());
+            // get join data
             Join join = joinService.getJoinByTables(splitValue[0], rule.getColumn().getTableName());
             String joinTemplate = new Template("joinTemplate").getContent();
 
+            // replace all needed in String
             joinTemplate = joinTemplate.replace("{{ select_replacement }}", value);
             joinTemplate = joinTemplate.replace("{{ variableName_replacement }}", value.replace(".", "_"));
             joinTemplate = joinTemplate.replace("{{ tableName_replacement }}", join.getFromTable() + ", " + join.getToTable());
@@ -91,6 +95,7 @@ public class OracleBusinessRuleBuilder implements BusinessRuleBuilder {
     public void buildFailure(Failure exception) {
         String failureContent = new Template("exceptionTemplate").getContent();
 
+        // replace all needed in String
         failureContent = failureContent.replace("{{ failure_name_replacement }}", exception.getName());
         failureContent = failureContent.replace("{{ failure_code_replacement }}", Integer.toString(exception.getCode()));
         failureContent = failureContent.replace("{{ failure_message_replacement }}", exception.getMessage());
@@ -99,6 +104,7 @@ public class OracleBusinessRuleBuilder implements BusinessRuleBuilder {
     }
 
     public String build() {
+        // replace all needed in String
         this.businessRule = this.businessRule.replace("{{ header_replacement }}", this.header);
         this.businessRule = this.businessRule.replace("{{ declaration_replacement }}", this.declaration);
         this.businessRule = this.businessRule.replace("{{ join_replacement }}", this.joins);

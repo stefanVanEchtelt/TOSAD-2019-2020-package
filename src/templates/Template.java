@@ -10,6 +10,7 @@ public class Template {
     }
 
     public String getContent() {
+        // get content of the inputFile
         try {
             InputStream inputStream = getClass().getResourceAsStream(inputFile+".txt");
             InputStreamReader isReader = new InputStreamReader(inputStream);

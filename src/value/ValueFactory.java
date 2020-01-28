@@ -11,6 +11,7 @@ public class ValueFactory implements ValueFactoryInterface {
 
     public Value create()
     {
+        // decides witch value to pick
         if (this.isColumn) {
             String[] splitValue = this.value.split("\\.", this.value.length());
             return new Column(splitValue[splitValue.length - 1], splitValue[0]);

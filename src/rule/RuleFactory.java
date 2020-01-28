@@ -21,6 +21,7 @@ public class RuleFactory implements RuleFactoryInterface {
         List<Value> values = new ValueService().getValuesByRule(this.ruleId);
         Rule rule = null;
 
+        // decide with rule
         if (this.ruleTypeEid == Or.getRuleTypeEid()) {
             rule = new Or(this.rule);
 

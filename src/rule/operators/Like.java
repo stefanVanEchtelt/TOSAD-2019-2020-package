@@ -21,6 +21,7 @@ public class Like extends RuleDecorator {
     public List<String> getJoinableValues() {
         List<String> values = super.getJoinableValues();
 
+        // decide witch value to join
         if (this.like.isColumn() && !super.isInBusinessRuleTable(this.like.getOfficialValue())) {
             if (!values.contains(this.like.getOfficialValue())) {
                 values.add(this.like.getOfficialValue());

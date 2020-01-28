@@ -21,6 +21,7 @@ public class Equals extends RuleDecorator {
     public List<String> getJoinableValues() {
         List<String> values = super.getJoinableValues();
 
+        // decide witch value to join
         if (this.equal.isColumn() && !super.isInBusinessRuleTable(this.equal.getOfficialValue())) {
             if (!values.contains(this.equal.getOfficialValue())) {
                 values.add(this.equal.getOfficialValue());

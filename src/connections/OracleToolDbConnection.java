@@ -14,6 +14,7 @@ public class OracleToolDbConnection {
     }
 
     public Connection getConnection() {
+        // get oracle connection
         String url = "jdbc:oracle:thin:@//ondora04.hu.nl:8521/educ27";
         String username = "TOSAD_TOOL_DB";
         String password = "tosadtooldb";

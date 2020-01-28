@@ -14,6 +14,7 @@ public class OracleRuleStorage implements RuleStorage {
         Column col = new Column(businessRule.getColumn(), businessRule.getTable());
         Rule rule = new BasicRule(col);
 
+        // get all rules by BusinessRule
         try (Connection con = OracleToolDbConnection.getInstance().getConnection()) {
             String query = "select * from RULES R " +
                     "where R.BUSINESS_RULES_ID = " + businessRule.getId();
